@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <gps.cenpis.cu.waverecorder.utility.RecyclerViewEmptySupport xmlns:app="http://schemas.android.com/apk/res-auto"
+        xmlns:tools="http://schemas.android.com/tools"
+        android:id="@+id/waveitem_list"
+        android:name="gps.cenpis.cu.waverecorder.fragment.WaveItemListFragment"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginLeft="16dp"
+        android:layout_marginRight="16dp"
+        app:layoutManager="LinearLayoutManager"
+        tools:context="gps.cenpis.cu.waverecorder.activity.WaveItemListActivity"
+        tools:listitem="@layout/waveitem_list_content" />
+
+    <TextView
+        android:id="@+id/list_empty"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:text="@string/no_reminders"
+        android:gravity="center" />
+
+</RelativeLayout>

@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="gps.cenpis.cu.waverecorder">
+
+    <uses-permission android:name="android.permission.RECORD_AUDIO" />
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+
+    <application
+        android:allowBackup="true"
+        android:icon="@drawable/crying_baby"
+        android:label="@string/app_name"
+        android:supportsRtl="true"
+        android:theme="@style/AppTheme">
+        <activity
+            android:name=".activity.WaveItemListActivity"
+            android:label="@string/app_name"
+            android:theme="@style/AppTheme.NoActionBar">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+
+        <activity
+            android:name=".activity.WaveItemDetailActivity"
+            android:label="@string/title_waveitem_detail"
+            android:parentActivityName=".activity.WaveItemListActivity"
+            android:theme="@style/AppTheme.NoActionBar">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="gps.cenpis.cu.waverecorder.activity.WaveItemListActivity" />
+        </activity>
+
+        <activity
+            android:name=".activity.RecorderActivity"
+            android:label="@string/wave_audio_record"
+            android:parentActivityName=".activity.WaveItemListActivity"
+            android:theme="@style/AppTheme.NoActionBar">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="gps.cenpis.cu.waverecorder.activity.WaveItemListActivity" />
+        </activity>
+
+        <activity
+            android:name=".activity.PerformanceLineChart"
+            android:label="@string/title_activity_chart" />
+
+    </application>
+
+</manifest>

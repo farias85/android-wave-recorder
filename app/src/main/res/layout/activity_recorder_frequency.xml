@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <TextView
+        android:id="@+id/textView2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
+        android:text="@string/frequency_header"
+        android:textAlignment="center" />
+
+    <RadioGroup
+        android:id="@+id/rgFrequency"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/textView2"
+        android:layout_centerHorizontal="true">
+
+        <RadioButton
+            android:id="@+id/radio8000hz"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:checked="true"
+            android:onClick="rgFrequencyClicked"
+            android:text="@string/frequency_8000" />
+
+        <RadioButton
+            android:id="@+id/radio22050hz"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:onClick="rgFrequencyClicked"
+            android:text="@string/frequency_22050" />
+
+        <RadioButton
+            android:id="@+id/radio44100hz"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:onClick="rgFrequencyClicked"
+            android:text="@string/frequency_44100" />
+
+    </RadioGroup>
+
+</RelativeLayout>
