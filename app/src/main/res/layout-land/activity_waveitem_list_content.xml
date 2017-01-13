@@ -1,0 +1,45 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:layout_marginLeft="16dp"
+    android:layout_marginRight="16dp"
+    android:baselineAligned="false"
+    android:divider="?android:attr/dividerHorizontal"
+    android:orientation="horizontal"
+    android:showDividers="middle"
+    tools:context="gps.cenpis.cu.waverecorder.activity.WaveItemListActivity">
+
+    <!--
+    This layout is a two-pane layout for the WaveItems
+    master/detail flow.
+    
+    -->
+
+    <gps.cenpis.cu.waverecorder.utility.RecyclerViewEmptySupport xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:tools="http://schemas.android.com/tools"
+        android:id="@+id/waveitem_list"
+        android:name="gps.cenpis.cu.waverecorder.WaveItemListFragment"
+        android:layout_width="@dimen/item_width"
+        android:layout_height="match_parent"
+        android:layout_marginLeft="16dp"
+        android:layout_marginRight="16dp"
+        app:layoutManager="LinearLayoutManager"
+        tools:context="gps.cenpis.cu.waverecorder.activity.WaveItemListActivity"
+        tools:listitem="@layout/activity_waveitem_list_content_row" />
+
+    <TextView
+        android:id="@+id/list_empty"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:text="@string/no_reminders"
+        android:gravity="center" />
+
+    <FrameLayout
+        android:id="@+id/recorder_container"
+        android:layout_width="0dp"
+        android:layout_height="match_parent"
+        android:layout_weight="3" />
+
+</LinearLayout>

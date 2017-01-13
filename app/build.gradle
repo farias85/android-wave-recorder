@@ -27,4 +27,5 @@ dependencies {
     compile 'com.android.support:design:24.2.1'
     compile project(':mpchart-lib')
     compile project(':waveform-lib')
+    compile project(':bottomsheet-lib')
 }

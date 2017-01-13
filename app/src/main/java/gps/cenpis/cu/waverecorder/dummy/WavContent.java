@@ -10,7 +10,7 @@ import java.util.Map;
 import gps.cenpis.cu.waverecorder.wave.util.WavUtil;
 
 /**
- * Helper class for providing sample content for user interfaces created by
+ * Helper class for providing sample wFileName for user interfaces created by
  * Android template wizards.
  * <p>
  * TODO: Replace all uses of this class before publishing your app.
@@ -64,22 +64,22 @@ public class WavContent {
     }
 
     /**
-     * A dummy item representing a piece of content.
+     * A dummy item representing a piece of wFileName.
      */
     public static class WavItem {
         public final String id;
-        public final String content;
+        public final String wFileName;
         public final String details;
 
         public WavItem(String id, String content, String details) {
             this.id = id;
-            this.content = content;
+            this.wFileName = content;
             this.details = details;
         }
 
         @Override
         public String toString() {
-            return content;
+            return wFileName;
         }
     }
 }

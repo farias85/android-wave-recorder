@@ -30,8 +30,8 @@ public class PerformanceLineChart extends Activity implements OnSeekBarChangeLis
     private SeekBar mSeekBarValues;
     private TextView mTvCount;
 
-    private static final String WAV_FILE_PATH = "wav_file_name";
-    private String wavFilePath;
+    private static final String WAV_FILE_NAME = "wav_file_name";
+    private String wavFileName;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -40,7 +40,7 @@ public class PerformanceLineChart extends Activity implements OnSeekBarChangeLis
                 WindowManager.LayoutParams.FLAG_FULLSCREEN);
         setContentView(R.layout.activity_performance_linechart);
 
-        wavFilePath = getIntent().getExtras().getString(WAV_FILE_PATH);
+        wavFileName = getIntent().getExtras().getString(WAV_FILE_NAME);
 
         mTvCount = (TextView) findViewById(R.id.tvValueCount);
         mSeekBarValues = (SeekBar) findViewById(R.id.seekbarValues);
@@ -70,19 +70,16 @@ public class PerformanceLineChart extends Activity implements OnSeekBarChangeLis
         mChart.getAxisRight().setEnabled(false);
         mChart.getXAxis().setDrawGridLines(true);
         mChart.getXAxis().setDrawAxisLine(false);
-
-//        setData2();
-//        // dont forget to refresh the drawing
-//        mChart.invalidate();
+        mChart.setBackgroundColor(Color.BLACK);
 
         ThisTakesAWhile ttaw = new ThisTakesAWhile();
         ttaw.execute();
     }
 
-    public static void callMe(Context context, String wavFilePath) {
+    public static void callMe(Context context, String wavFileName) {
         Intent intent = new Intent(context, PerformanceLineChart.class);
         Bundle arguments = new Bundle();
-        arguments.putString(PerformanceLineChart.WAV_FILE_PATH, wavFilePath);
+        arguments.putString(PerformanceLineChart.WAV_FILE_NAME, wavFileName);
         intent.putExtras(arguments);
         context.startActivity(intent);
     }
@@ -123,7 +120,8 @@ public class PerformanceLineChart extends Activity implements OnSeekBarChangeLis
         double[] left = wr.getLeft();
 
         for (int i = 0; i < left.length; i++) {
-            yVals.add(new Entry(i * 1f, (float) left[i]));
+            if (i % 100 == 0)
+                yVals.add(new Entry(i * 1f, (float) left[i]));
         }
 
         // create a dataset and give it a type
@@ -183,6 +181,7 @@ public class PerformanceLineChart extends Activity implements OnSeekBarChangeLis
     private boolean processing;
     private int count;
 
+
     class ThisTakesAWhile extends AsyncTask<Integer, Integer, Integer> { //AsyncTask can take any type here arg0, arg1, arg2 all integers
 
         private int numcycles; //total number of times to execute process
@@ -195,7 +194,7 @@ public class PerformanceLineChart extends Activity implements OnSeekBarChangeLis
             count = 0;
 
             WavReader wr = new WavReader();
-            wr.openWav(wavFilePath);
+            wr.openWav(wavFileName);
             left = wr.getLeft();
         }
 

@@ -7,19 +7,7 @@
     android:fitsSystemWindows="true"
     tools:context="gps.cenpis.cu.waverecorder.activity.WaveItemListActivity">
 
-    <android.support.design.widget.AppBarLayout
-        android:id="@+id/app_bar"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:theme="@style/AppTheme.AppBarOverlay">
-
-        <android.support.v7.widget.Toolbar
-            android:id="@+id/toolbar"
-            android:layout_width="match_parent"
-            android:layout_height="?attr/actionBarSize"
-            app:popupTheme="@style/AppTheme.PopupOverlay" />
-
-    </android.support.design.widget.AppBarLayout>
+    <include layout="@layout/_app_bar_layout" />
 
     <FrameLayout
         android:id="@+id/frameLayout"
@@ -27,7 +15,7 @@
         android:layout_height="match_parent"
         app:layout_behavior="@string/appbar_scrolling_view_behavior">
 
-        <include layout="@layout/waveitem_list" />
+        <include layout="@layout/activity_waveitem_list_content" />
     </FrameLayout>
 
     <android.support.design.widget.FloatingActionButton
@@ -36,7 +24,7 @@
         android:layout_height="wrap_content"
         android:layout_gravity="bottom|end"
         android:layout_margin="@dimen/fab_margin"
-        app:srcCompat="@drawable/add_property" />
+        app:srcCompat="@drawable/lic_add_property_48" />
 
 
 </android.support.design.widget.CoordinatorLayout>

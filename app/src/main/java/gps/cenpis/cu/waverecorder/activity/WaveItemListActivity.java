@@ -1,17 +1,21 @@
 package gps.cenpis.cu.waverecorder.activity;
 
+import android.Manifest;
 import android.content.Intent;
+import android.content.pm.PackageManager;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.design.widget.FloatingActionButton;
+import android.support.v4.app.ActivityCompat;
+import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
-import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.Toast;
 
 import java.util.List;
 
@@ -20,7 +24,6 @@ import gps.cenpis.cu.waverecorder.dummy.WavContent;
 import gps.cenpis.cu.waverecorder.utility.RecyclerViewEmptySupport;
 import gps.cenpis.cu.waverecorder.utility.SimpleDividerItemDecoration;
 import gps.cenpis.cu.waverecorder.utility.SimpleItemRecyclerViewAdapter;
-import gps.cenpis.cu.waverecorder.wave.util.WavUtil;
 
 /**
  * An activity representing a list of WaveItems. This activity
@@ -32,13 +35,14 @@ import gps.cenpis.cu.waverecorder.wave.util.WavUtil;
  */
 public class WaveItemListActivity extends AppCompatActivity {
 
+    private static final int PERMISSION_WRITE_EXTRENAL = 0;
     /**
      * Whether or not the activity is in two-pane mode, i.e. running on a tablet
      * device.
      */
     private boolean mTwoPane;
-    private SimpleItemRecyclerViewAdapter mAdapter;
-    private List<WavContent.WavItem> items;
+//    private SimpleItemRecyclerViewAdapter mAdapter;
+//    private List<WavContent.WavItem> items;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -54,6 +58,8 @@ public class WaveItemListActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 startActivity(new Intent(WaveItemListActivity.this, RecorderActivity.class));
+//                startActivity(new Intent(WaveItemListActivity.this, BasicActivity.class));
+//                startActivity(new Intent(WaveItemListActivity.this, SheetActivity.class));
             }
         });
 
@@ -63,6 +69,15 @@ public class WaveItemListActivity extends AppCompatActivity {
             // If this view is present, then the
             // activity should be in two-pane mode.
             mTwoPane = true;
+        }
+
+        if (ContextCompat.checkSelfPermission(WaveItemListActivity.this, Manifest.permission.WRITE_EXTERNAL_STORAGE)
+                != PackageManager.PERMISSION_GRANTED) {
+            // Request permission
+            ActivityCompat.requestPermissions(WaveItemListActivity.this,
+                    new String[]{Manifest.permission.WRITE_EXTERNAL_STORAGE},
+                    PERMISSION_WRITE_EXTRENAL);
+            return;
         }
     }
 
@@ -79,14 +94,34 @@ public class WaveItemListActivity extends AppCompatActivity {
 
     private void setupRecyclerView(@NonNull RecyclerView recyclerView) {
         recyclerView.addItemDecoration(new SimpleDividerItemDecoration(getResources()));
-        items = WavContent.getInstance(true).getItems();
-        mAdapter = new SimpleItemRecyclerViewAdapter(WaveItemListActivity.this, mTwoPane, items);
+        List<WavContent.WavItem> items = WavContent.getInstance(true).getItems();
+        SimpleItemRecyclerViewAdapter mAdapter = new SimpleItemRecyclerViewAdapter(WaveItemListActivity.this, mTwoPane, items);
         recyclerView.setAdapter(mAdapter);
     }
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
-        new MenuInflater(WaveItemListActivity.this).inflate(R.menu.list_menu, menu);
+        getMenuInflater().inflate(R.menu.list_menu, menu);
+
+//        new BottomSheet.Builder(this)
+//                .setSheet(R.menu.list_menu)
+//                .setTitle("Options")
+//                .setListener(new BottomSheetListener() {
+//                    @Override
+//                    public void onSheetShown(@NonNull BottomSheet bottomSheet) {
+//
+//                    }
+//
+//                    @Override
+//                    public void onSheetItemSelected(@NonNull BottomSheet bottomSheet, MenuItem item) {
+//
+//                    }
+//
+//                    @Override
+//                    public void onSheetDismissed(@NonNull BottomSheet bottomSheet, @DismissEvent int dismissEvent) {
+//
+//                    }
+//                }).show();
         return super.onCreateOptionsMenu(menu);
     }
 
@@ -103,24 +138,39 @@ public class WaveItemListActivity extends AppCompatActivity {
         return super.onOptionsItemSelected(item);
     }
 
+//    @Override
+//    public boolean onContextItemSelected(MenuItem item) {
+//
+//        int position = mAdapter.getPosition();
+//        WavContent.WavItem obj = items.get(position);
+//
+//        switch (item.getItemId()) {
+//            case R.id.menu_delete:
+//                items.remove(obj);
+//                mAdapter.notifyDataSetChanged();
+//                break;
+//            case R.id.menu_oscilogram:
+//                PerformanceLineChart.callMe(WaveItemListActivity.this, WavUtil.DIRECTORY_PATH + obj.wFileName);
+//                //Toast.makeText(WaveItemListActivity.this, obj.wFileName, Toast.LENGTH_LONG).show();
+//                break;
+//        }
+//
+//        return super.onContextItemSelected(item);
+//    }
+
     @Override
-    public boolean onContextItemSelected(MenuItem item) {
-
-        int position = mAdapter.getPosition();
-        WavContent.WavItem obj = items.get(position);
-
-        switch (item.getItemId()) {
-            case R.id.menu_delete:
-                items.remove(obj);
-                mAdapter.notifyDataSetChanged();
-                break;
-            case R.id.menu_oscilogram:
-                PerformanceLineChart.callMe(WaveItemListActivity.this, WavUtil.DIRECTORY_PATH + obj.content);
-                //Toast.makeText(WaveItemListActivity.this, obj.content, Toast.LENGTH_LONG).show();
+    public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
+        switch (requestCode) {
+            case PERMISSION_WRITE_EXTRENAL:
+                if (grantResults.length > 0 && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
+                    // Permission granted
+                    Toast.makeText(this, getBaseContext().getString(R.string.create_dir_ok), Toast.LENGTH_SHORT).show();
+                } else {
+                    // Permission denied
+                    Toast.makeText(this, getBaseContext().getString(R.string.create_dir_fail), Toast.LENGTH_SHORT).show();
+                }
                 break;
         }
-
-        return super.onContextItemSelected(item);
     }
 
 }

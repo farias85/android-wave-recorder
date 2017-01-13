@@ -43,5 +43,7 @@
     <string name="no_reminders">No wav recorder yet</string>
     <string name="menu_delete">Delete wav file</string>
     <string name="title_activity_main">MainActivity</string>
+    <string name="title_activity_basic">BasicActivity</string>
+    <string name="title_activity_sheet">SheetActivity</string>
 
 </resources>

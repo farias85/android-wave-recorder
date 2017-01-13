@@ -1,9 +1,19 @@
 <?xml version="1.0" encoding="utf-8"?>
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
+
     <item
-        android:id="@+id/menu_oscilogram"
+        android:id="@+id/oscilogram"
+        android:icon="@drawable/lic_line_chart_48"
         android:title="@string/button_oscilogram" />
+
     <item
-        android:id="@+id/menu_delete"
+        android:id="@+id/delete"
+        android:icon="@drawable/lic_delete_48"
         android:title="@string/menu_delete" />
+
+    <item
+        android:id="@+id/play"
+        android:icon="@drawable/lic_play_48"
+        android:title="@string/button_play" />
+
 </menu>

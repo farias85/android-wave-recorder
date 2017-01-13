@@ -57,7 +57,7 @@ public class RecorderActivity extends AppCompatActivity {
 
         editText1 = (EditText) this.findViewById(R.id.editText1);
 
-        Toolbar toolbar = (Toolbar) findViewById(R.id.detail_toolbar);
+        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
         FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.btnFloatingPlay);
