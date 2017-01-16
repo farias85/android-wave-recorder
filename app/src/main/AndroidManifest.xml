@@ -55,6 +55,10 @@
             android:name=".activity.SheetActivity"
             android:label="@string/title_activity_sheet"
             android:theme="@style/AppTheme.NoActionBar"></activity>
+        <activity
+            android:name=".oscilogram.newventures.MainActivity"
+            android:label="@string/title_activity_main"
+            android:theme="@style/AppTheme.NoActionBar"></activity>
     </application>
 
 </manifest>

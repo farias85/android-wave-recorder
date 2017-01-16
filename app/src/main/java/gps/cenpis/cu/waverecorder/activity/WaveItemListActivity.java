@@ -17,10 +17,13 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.Toast;
 
+import com.semantive.example.MainActivity;
+
 import java.util.List;
 
 import gps.cenpis.cu.waverecorder.R;
-import gps.cenpis.cu.waverecorder.dummy.WavContent;
+import gps.cenpis.cu.waverecorder.oscilogram.newventures.NewVentureActivity;
+import gps.cenpis.cu.waverecorder.wave.util.WavContent;
 import gps.cenpis.cu.waverecorder.utility.RecyclerViewEmptySupport;
 import gps.cenpis.cu.waverecorder.utility.SimpleDividerItemDecoration;
 import gps.cenpis.cu.waverecorder.utility.SimpleItemRecyclerViewAdapter;
@@ -57,9 +60,11 @@ public class WaveItemListActivity extends AppCompatActivity {
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                startActivity(new Intent(WaveItemListActivity.this, RecorderActivity.class));
+//                startActivity(new Intent(WaveItemListActivity.this, RecorderActivity.class));
 //                startActivity(new Intent(WaveItemListActivity.this, BasicActivity.class));
 //                startActivity(new Intent(WaveItemListActivity.this, SheetActivity.class));
+//                startActivity(new Intent(WaveItemListActivity.this, NewVentureActivity.class));
+                startActivity(new Intent(WaveItemListActivity.this, MainActivity.class));
             }
         });
 
@@ -137,26 +142,6 @@ public class WaveItemListActivity extends AppCompatActivity {
         }
         return super.onOptionsItemSelected(item);
     }
-
-//    @Override
-//    public boolean onContextItemSelected(MenuItem item) {
-//
-//        int position = mAdapter.getPosition();
-//        WavContent.WavItem obj = items.get(position);
-//
-//        switch (item.getItemId()) {
-//            case R.id.menu_delete:
-//                items.remove(obj);
-//                mAdapter.notifyDataSetChanged();
-//                break;
-//            case R.id.menu_oscilogram:
-//                PerformanceLineChart.callMe(WaveItemListActivity.this, WavUtil.DIRECTORY_PATH + obj.wFileName);
-//                //Toast.makeText(WaveItemListActivity.this, obj.wFileName, Toast.LENGTH_LONG).show();
-//                break;
-//        }
-//
-//        return super.onContextItemSelected(item);
-//    }
 
     @Override
     public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {

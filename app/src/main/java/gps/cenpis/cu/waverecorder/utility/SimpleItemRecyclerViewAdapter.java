@@ -24,7 +24,7 @@ import java.util.List;
 import gps.cenpis.cu.waverecorder.R;
 import gps.cenpis.cu.waverecorder.activity.PerformanceLineChart;
 import gps.cenpis.cu.waverecorder.activity.WaveItemDetailActivity;
-import gps.cenpis.cu.waverecorder.dummy.WavContent;
+import gps.cenpis.cu.waverecorder.wave.util.WavContent;
 import gps.cenpis.cu.waverecorder.fragment.WaveItemDetailFragment;
 import gps.cenpis.cu.waverecorder.wave.util.WavUtil;
 

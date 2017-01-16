@@ -1,4 +1,4 @@
-package gps.cenpis.cu.waverecorder.dummy;
+package gps.cenpis.cu.waverecorder.wave.util;
 
 import android.support.annotation.NonNull;
 
@@ -6,8 +6,6 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-
-import gps.cenpis.cu.waverecorder.wave.util.WavUtil;
 
 /**
  * Helper class for providing sample wFileName for user interfaces created by
@@ -22,7 +20,7 @@ public class WavContent {
 
     public WavContent() {
         List<String> witems = WavUtil.getFiles();
-        for (int i = 1; i < witems.size(); i++) {
+        for (int i = 0; i < witems.size(); i++) {
             addWavItem(new WavItem(String.valueOf(i), witems.get(i), makeDetails(i)));
         }
     }

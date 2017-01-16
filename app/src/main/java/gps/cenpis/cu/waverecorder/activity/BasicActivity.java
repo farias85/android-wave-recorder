@@ -20,7 +20,7 @@ import com.github.mikephil.charting.data.LineDataSet;
 import java.util.ArrayList;
 
 import gps.cenpis.cu.waverecorder.R;
-import gps.cenpis.cu.waverecorder.dummy.WavContent;
+import gps.cenpis.cu.waverecorder.wave.util.WavContent;
 import gps.cenpis.cu.waverecorder.wave.util.WavUtil;
 
 public class BasicActivity extends AppCompatActivity {

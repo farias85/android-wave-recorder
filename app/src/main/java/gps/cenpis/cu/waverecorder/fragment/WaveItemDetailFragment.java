@@ -22,7 +22,7 @@ import java.util.ArrayList;
 import gps.cenpis.cu.waverecorder.R;
 import gps.cenpis.cu.waverecorder.activity.WaveItemDetailActivity;
 import gps.cenpis.cu.waverecorder.activity.WaveItemListActivity;
-import gps.cenpis.cu.waverecorder.dummy.WavContent;
+import gps.cenpis.cu.waverecorder.wave.util.WavContent;
 import gps.cenpis.cu.waverecorder.wave.util.WavReader;
 import gps.cenpis.cu.waverecorder.wave.util.WavUtil;
 
