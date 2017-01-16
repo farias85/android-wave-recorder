@@ -25,13 +25,14 @@ import android.view.GestureDetector;
 import android.view.MotionEvent;
 import android.view.ScaleGestureDetector;
 import android.view.View;
-import com.semantive.example.R;
 import com.semantive.waveformandroid.waveform.Segment;
 import com.semantive.waveformandroid.waveform.soundfile.CheapSoundFile;
 
 import java.util.List;
 import java.util.NavigableMap;
 import java.util.TreeMap;
+
+import gps.cenpis.cu.waverecorder.R;
 
 /**
  * WaveformView is an Android view that displays a visual representation
