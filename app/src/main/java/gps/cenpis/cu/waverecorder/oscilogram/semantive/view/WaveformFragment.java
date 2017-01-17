@@ -2,6 +2,7 @@ package gps.cenpis.cu.waverecorder.oscilogram.semantive.view;
 
 import android.app.ProgressDialog;
 import android.content.DialogInterface;
+import android.graphics.Color;
 import android.media.AudioManager;
 import android.media.MediaPlayer;
 import android.os.Bundle;
@@ -380,6 +381,7 @@ public abstract class WaveformFragment extends Fragment implements MarkerView.Ma
         mWaveformView = (WaveformView) view.findViewById(R.id.waveform);
         mWaveformView.setListener(this);
         mWaveformView.setSegments(getSegments());
+        mWaveformView.setBackgroundColor(Color.BLACK);
 
         mInfo = (TextView) view.findViewById(R.id.info);
         mInfo.setText(mCaption);

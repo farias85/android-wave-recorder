@@ -22,7 +22,7 @@ import android.util.Log;
 import java.nio.ShortBuffer;
 
 public class PlaybackThread {
-    static final int SAMPLE_RATE = 8000;
+    public static int SAMPLE_RATE = 8000;
     private static final String LOG_TAG = PlaybackThread.class.getSimpleName();
 
     public PlaybackThread(short[] samples, PlaybackListener listener) {

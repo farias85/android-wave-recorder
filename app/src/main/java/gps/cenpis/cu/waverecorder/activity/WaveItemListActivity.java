@@ -17,6 +17,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.Toast;
 
+import gps.cenpis.cu.waverecorder.oscilogram.newventures.NewVentureActivity;
 import gps.cenpis.cu.waverecorder.oscilogram.semantive.SemantiveActivity;
 
 import java.util.List;
@@ -59,11 +60,11 @@ public class WaveItemListActivity extends AppCompatActivity {
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-//                startActivity(new Intent(WaveItemListActivity.this, RecorderActivity.class));
+                startActivity(new Intent(WaveItemListActivity.this, RecorderActivity.class));
 //                startActivity(new Intent(WaveItemListActivity.this, BasicActivity.class));
 //                startActivity(new Intent(WaveItemListActivity.this, SheetActivity.class));
 //                startActivity(new Intent(WaveItemListActivity.this, NewVentureActivity.class));
-                startActivity(new Intent(WaveItemListActivity.this, SemantiveActivity.class));
+//                startActivity(new Intent(WaveItemListActivity.this, SemantiveActivity.class));
             }
         });
 

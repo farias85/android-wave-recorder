@@ -13,6 +13,7 @@ import android.view.MenuItem;
 
 import gps.cenpis.cu.waverecorder.R;
 import gps.cenpis.cu.waverecorder.fragment.WaveItemDetailFragment;
+import gps.cenpis.cu.waverecorder.fragment.WaveItemDetailFragment2;
 
 /**
  * An activity representing a single WaveItem detail screen. This
@@ -29,15 +30,6 @@ public class WaveItemDetailActivity extends AppCompatActivity {
 
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
-
-        FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.btnFloatingPlay);
-        fab.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Snackbar.make(view, "Replace with your own detail action", Snackbar.LENGTH_LONG)
-                        .setAction("Action", null).show();
-            }
-        });
 
         // Show the Up button in the action bar.
         ActionBar actionBar = getSupportActionBar();
@@ -57,10 +49,22 @@ public class WaveItemDetailActivity extends AppCompatActivity {
         if (savedInstanceState == null) {
             // Create the detail fragment and add it to the activity
             // using a fragment transaction.
+
+            //DetailFragment1
+//            Bundle arguments = new Bundle();
+//            arguments.putString(WaveItemDetailFragment.ARG_ITEM_ID,
+//                    getIntent().getStringExtra(WaveItemDetailFragment.ARG_ITEM_ID));
+//            WaveItemDetailFragment fragment = new WaveItemDetailFragment();
+//            fragment.setArguments(arguments);
+//            getSupportFragmentManager().beginTransaction()
+//                    .add(R.id.recorder_container, fragment)
+//                    .commit();
+
+            //DetailFragment2
             Bundle arguments = new Bundle();
-            arguments.putString(WaveItemDetailFragment.ARG_ITEM_ID,
-                    getIntent().getStringExtra(WaveItemDetailFragment.ARG_ITEM_ID));
-            WaveItemDetailFragment fragment = new WaveItemDetailFragment();
+            arguments.putString(WaveItemDetailFragment2.ARG_ITEM_ID,
+                    getIntent().getStringExtra(WaveItemDetailFragment2.ARG_ITEM_ID));
+            WaveItemDetailFragment2 fragment = new WaveItemDetailFragment2();
             fragment.setArguments(arguments);
             getSupportFragmentManager().beginTransaction()
                     .add(R.id.recorder_container, fragment)

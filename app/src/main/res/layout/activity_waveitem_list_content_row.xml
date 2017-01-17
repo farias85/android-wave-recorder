@@ -22,13 +22,13 @@
         android:layout_below="@+id/id"
         android:layout_marginRight="10dp"
         android:layout_marginTop="3dp"
-        android:layout_toLeftOf="@+id/tvNew"
-        android:layout_toStartOf="@+id/tvNew"
+        android:layout_toLeftOf="@+id/details"
+        android:layout_toStartOf="@+id/details"
         android:text="Small Text"
         android:textSize="12dp" />
 
     <TextView
-        android:id="@+id/tvNew"
+        android:id="@+id/details"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentEnd="true"

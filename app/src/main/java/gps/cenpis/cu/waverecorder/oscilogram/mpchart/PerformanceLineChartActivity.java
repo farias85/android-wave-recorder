@@ -24,7 +24,7 @@ import java.util.ArrayList;
 import gps.cenpis.cu.waverecorder.R;
 import gps.cenpis.cu.waverecorder.wave.util.WavReader;
 
-public class PerformanceLineChart extends Activity implements OnSeekBarChangeListener {
+public class PerformanceLineChartActivity extends Activity implements OnSeekBarChangeListener {
 
     private LineChart mChart;
     private SeekBar mSeekBarValues;
@@ -77,9 +77,9 @@ public class PerformanceLineChart extends Activity implements OnSeekBarChangeLis
     }
 
     public static void callMe(Context context, String wavFileName) {
-        Intent intent = new Intent(context, PerformanceLineChart.class);
+        Intent intent = new Intent(context, PerformanceLineChartActivity.class);
         Bundle arguments = new Bundle();
-        arguments.putString(PerformanceLineChart.WAV_FILE_NAME, wavFileName);
+        arguments.putString(PerformanceLineChartActivity.WAV_FILE_NAME, wavFileName);
         intent.putExtras(arguments);
         context.startActivity(intent);
     }

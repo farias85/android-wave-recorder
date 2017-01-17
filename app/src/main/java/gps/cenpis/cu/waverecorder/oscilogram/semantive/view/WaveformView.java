@@ -18,6 +18,7 @@ package gps.cenpis.cu.waverecorder.oscilogram.semantive.view;
 
 import android.content.Context;
 import android.graphics.Canvas;
+import android.graphics.Color;
 import android.graphics.DashPathEffect;
 import android.graphics.Paint;
 import android.util.AttributeSet;
@@ -108,7 +109,8 @@ public class WaveformView extends View {
         mGridPaint.setColor(getResources().getColor(R.color.grid_line));
         mSelectedLinePaint = new Paint();
         mSelectedLinePaint.setAntiAlias(false);
-        mSelectedLinePaint.setColor(getResources().getColor(R.color.waveform_selected));
+//        mSelectedLinePaint.setColor(getResources().getColor(R.color.waveform_selected));
+        mSelectedLinePaint.setColor(Color.GREEN);
         mUnselectedLinePaint = new Paint();
         mUnselectedLinePaint.setAntiAlias(false);
         mUnselectedLinePaint.setColor(getResources().getColor(R.color.waveform_unselected));

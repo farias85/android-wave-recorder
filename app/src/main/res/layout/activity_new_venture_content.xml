@@ -9,7 +9,7 @@
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
     android:orientation="vertical"
-    tools:context=".oscilogram.newventures.MainActivity"
+    tools:context=".oscilogram.newventures.NewVentureActivity"
     tools:showIn="@layout/activity_new_venture">
 
     <!--app:layout_behavior="@string/appbar_scrolling_view_behavior"-->
@@ -27,9 +27,9 @@
         android:layout_height="0dp"
         android:layout_weight="1"
         app:mode="PLAYBACK"
-        app:waveformStrokeThickness="3"
-        app:waveformColor="#e5dc33"
-        app:waveformFillColor="#e93519"
+        app:waveformStrokeThickness="1"
+        app:waveformColor="#00ffaa"
+        app:waveformFillColor="#00ff00"
         android:background="#000000"
         android:id="@+id/playbackWaveformView" />
 </LinearLayout>

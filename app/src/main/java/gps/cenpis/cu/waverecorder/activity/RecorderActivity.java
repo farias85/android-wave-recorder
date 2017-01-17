@@ -114,7 +114,7 @@ public class RecorderActivity extends AppCompatActivity {
 //            @Override
 //            public void onClick(View v) {
 //                mRcordFilePath = mRcordFilePath != null ? mRcordFilePath : WavUtil.DIRECTORY_PATH + "testwave-8000-12000.wav";
-//                //PerformanceLineChart.callMe(NewVentureActivity.this, mRcordFilePath);
+//                //PerformanceLineChartActivity.callMe(NewVentureActivity.this, mRcordFilePath);
 //            }
 //        });
     }

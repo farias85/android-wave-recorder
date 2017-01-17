@@ -22,10 +22,10 @@ import java.io.File;
 import java.util.List;
 
 import gps.cenpis.cu.waverecorder.R;
-import gps.cenpis.cu.waverecorder.oscilogram.mpchart.PerformanceLineChart;
+import gps.cenpis.cu.waverecorder.fragment.WaveItemDetailFragment2;
 import gps.cenpis.cu.waverecorder.activity.WaveItemDetailActivity;
+import gps.cenpis.cu.waverecorder.oscilogram.semantive.SemantiveActivity;
 import gps.cenpis.cu.waverecorder.wave.util.WavContent;
-import gps.cenpis.cu.waverecorder.fragment.WaveItemDetailFragment;
 import gps.cenpis.cu.waverecorder.wave.util.WavUtil;
 
 /**
@@ -64,19 +64,30 @@ public class SimpleItemRecyclerViewAdapter
     public void onBindViewHolder(final ViewHolder holder, int position) {
         holder.mItem = items.get(position);
 
-        holder.mIdView.setText(items.get(position).id);
+        holder.mIdView.setText(holder.mItem.wFileName);
         holder.mIdView.setTypeface(mTypeFaceRegular);
 
-        holder.mContentView.setText(items.get(position).wFileName);
+        holder.mContentView.setText("");
         holder.mContentView.setTypeface(mTypeFaceLight);
+
+        int id = Integer.parseInt(holder.mItem.id) + 1 ;
+        holder.mDetails.setText(String.valueOf(id));
+        holder.mDetails.setTypeface(mTypeFaceLight);
 
         holder.mView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 if (mTwoPane) {
+//                    Bundle arguments = new Bundle();
+//                    arguments.putString(WaveItemDetailFragment.ARG_ITEM_ID, holder.mItem.id);
+//                    WaveItemDetailFragment fragment = new WaveItemDetailFragment();
+//                    fragment.setArguments(arguments);
+//                    mActivity.getSupportFragmentManager().beginTransaction()
+//                            .replace(R.id.recorder_container, fragment)
+//                            .commit();
                     Bundle arguments = new Bundle();
-                    arguments.putString(WaveItemDetailFragment.ARG_ITEM_ID, holder.mItem.id);
-                    WaveItemDetailFragment fragment = new WaveItemDetailFragment();
+                    arguments.putString(WaveItemDetailFragment2.ARG_ITEM_ID, holder.mItem.id);
+                    WaveItemDetailFragment2 fragment = new WaveItemDetailFragment2();
                     fragment.setArguments(arguments);
                     mActivity.getSupportFragmentManager().beginTransaction()
                             .replace(R.id.recorder_container, fragment)
@@ -121,6 +132,7 @@ public class SimpleItemRecyclerViewAdapter
         public final View mView;
         public final TextView mIdView;
         public final TextView mContentView;
+        public final TextView mDetails;
         public WavContent.WavItem mItem;
 
         public ViewHolder(View view) {
@@ -128,6 +140,7 @@ public class SimpleItemRecyclerViewAdapter
             mView = view;
             mIdView = (TextView) view.findViewById(R.id.id);
             mContentView = (TextView) view.findViewById(R.id.content);
+            mDetails = (TextView) view.findViewById(R.id.details);
 
             mView.setOnCreateContextMenuListener(this);
         }
@@ -166,7 +179,8 @@ public class SimpleItemRecyclerViewAdapter
                             .setListener(ViewHolder.this).show();
                     break;
                 case R.id.oscilogram:
-                    PerformanceLineChart.callMe(mActivity, WavUtil.DIRECTORY_PATH + mItem.wFileName);
+                    //PerformanceLineChartActivity.callMe(mActivity, WavUtil.DIRECTORY_PATH + mItem.wFileName);
+                    SemantiveActivity.callMe(mActivity, WavUtil.DIRECTORY_PATH + mItem.wFileName);
                     break;
                 case R.id.play:
                     Intent intent = new Intent();

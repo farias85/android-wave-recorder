@@ -40,7 +40,7 @@
                 android:value="gps.cenpis.cu.waverecorder.activity.WaveItemListActivity" />
         </activity>
         <activity
-            android:name=".oscilogram.mpchart.PerformanceLineChart"
+            android:name=".oscilogram.mpchart.PerformanceLineChartActivity"
             android:label="@string/title_activity_chart" />
         <activity
             android:name=".activity.BasicActivity"

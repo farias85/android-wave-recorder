@@ -7,22 +7,12 @@
     tools:context="gps.cenpis.cu.waverecorder.activity.WaveItemDetailActivity"
     tools:ignore="MergeRootFrame">
 
-    <include layout="@layout/_app_bar_layout" />
+    <include layout="@layout/_app_bar_layout_simple_bg_color" />
 
     <FrameLayout
         android:id="@+id/recorder_container"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         app:layout_behavior="@string/appbar_scrolling_view_behavior"/>
-
-    <android.support.design.widget.FloatingActionButton
-        android:id="@+id/btnFloatingPlay"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center_vertical|start"
-        android:layout_margin="@dimen/fab_margin"
-        app:layout_anchor="@+id/recorder_container"
-        app:layout_anchorGravity="top|end"
-        app:srcCompat="@android:drawable/stat_notify_chat" />
 
 </android.support.design.widget.CoordinatorLayout>

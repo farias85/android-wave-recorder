@@ -7,7 +7,7 @@
     android:fitsSystemWindows="true"
     tools:context="gps.cenpis.cu.waverecorder.activity.BasicActivity">
 
-    <include layout="@layout/_app_bar_layout" />
+    <include layout="@layout/_app_bar_layout_simple_bg_color" />
 
     <FrameLayout
         android:id="@+id/frameLayout"
