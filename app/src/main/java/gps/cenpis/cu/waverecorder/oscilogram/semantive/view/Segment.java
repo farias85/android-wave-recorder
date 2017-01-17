@@ -1,4 +1,4 @@
-package com.semantive.waveformandroid.waveform;
+package gps.cenpis.cu.waverecorder.oscilogram.semantive.view;
 
 public class Segment {
     private final Double start;

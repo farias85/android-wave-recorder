@@ -1,5 +1,5 @@
 
-package gps.cenpis.cu.waverecorder.activity;
+package gps.cenpis.cu.waverecorder.oscilogram.mpchart;
 
 import android.app.Activity;
 import android.content.Context;

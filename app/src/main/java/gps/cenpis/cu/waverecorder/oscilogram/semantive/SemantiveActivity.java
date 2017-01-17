@@ -1,4 +1,4 @@
-package com.semantive.example;
+package gps.cenpis.cu.waverecorder.oscilogram.semantive;
 
 import android.Manifest;
 import android.content.pm.PackageManager;
@@ -11,22 +11,22 @@ import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.widget.Toast;
 
-import com.semantive.waveformandroid.waveform.Segment;
-import com.semantive.waveformandroid.waveform.WaveformFragment;
+import gps.cenpis.cu.waverecorder.oscilogram.semantive.view.Segment;
+import gps.cenpis.cu.waverecorder.oscilogram.semantive.view.WaveformFragment;
 
 import java.util.Arrays;
 import java.util.List;
 
 import gps.cenpis.cu.waverecorder.R;
 
-public class MainActivity extends AppCompatActivity {
+public class SemantiveActivity extends AppCompatActivity {
 
     private static final int PERMISSION_WRITE_EXTRENAL = 0;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
+        setContentView(R.layout.activity_semantive);
 
         if (ContextCompat.checkSelfPermission(this, Manifest.permission.WRITE_EXTERNAL_STORAGE)
                 != PackageManager.PERMISSION_GRANTED) {

@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package com.semantive.waveformandroid.waveform.view;
+package gps.cenpis.cu.waverecorder.oscilogram.semantive.view;
 
 import android.content.Context;
 import android.graphics.Canvas;

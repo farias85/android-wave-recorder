@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package com.semantive.waveformandroid.waveform.soundfile;
+package gps.cenpis.cu.waverecorder.oscilogram.semantive.soundfile;
 
 import java.io.File;
 import java.util.ArrayList;

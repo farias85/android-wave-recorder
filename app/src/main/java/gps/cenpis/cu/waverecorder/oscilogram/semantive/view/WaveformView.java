@@ -1,4 +1,4 @@
-package com.semantive.waveformandroid.waveform.view;
+package gps.cenpis.cu.waverecorder.oscilogram.semantive.view;
 
 /*
  * Copyright (C) 2008 Google Inc.
@@ -25,8 +25,8 @@ import android.view.GestureDetector;
 import android.view.MotionEvent;
 import android.view.ScaleGestureDetector;
 import android.view.View;
-import com.semantive.waveformandroid.waveform.Segment;
-import com.semantive.waveformandroid.waveform.soundfile.CheapSoundFile;
+
+import gps.cenpis.cu.waverecorder.oscilogram.semantive.soundfile.CheapSoundFile;
 
 import java.util.List;
 import java.util.NavigableMap;

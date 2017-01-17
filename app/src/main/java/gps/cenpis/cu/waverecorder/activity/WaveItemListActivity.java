@@ -17,12 +17,11 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.Toast;
 
-import com.semantive.example.MainActivity;
+import gps.cenpis.cu.waverecorder.oscilogram.semantive.SemantiveActivity;
 
 import java.util.List;
 
 import gps.cenpis.cu.waverecorder.R;
-import gps.cenpis.cu.waverecorder.oscilogram.newventures.NewVentureActivity;
 import gps.cenpis.cu.waverecorder.wave.util.WavContent;
 import gps.cenpis.cu.waverecorder.utility.RecyclerViewEmptySupport;
 import gps.cenpis.cu.waverecorder.utility.SimpleDividerItemDecoration;
@@ -64,7 +63,7 @@ public class WaveItemListActivity extends AppCompatActivity {
 //                startActivity(new Intent(WaveItemListActivity.this, BasicActivity.class));
 //                startActivity(new Intent(WaveItemListActivity.this, SheetActivity.class));
 //                startActivity(new Intent(WaveItemListActivity.this, NewVentureActivity.class));
-                startActivity(new Intent(WaveItemListActivity.this, MainActivity.class));
+                startActivity(new Intent(WaveItemListActivity.this, SemantiveActivity.class));
             }
         });
 

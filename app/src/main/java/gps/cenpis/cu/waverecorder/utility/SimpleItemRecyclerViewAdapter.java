@@ -22,7 +22,7 @@ import java.io.File;
 import java.util.List;
 
 import gps.cenpis.cu.waverecorder.R;
-import gps.cenpis.cu.waverecorder.activity.PerformanceLineChart;
+import gps.cenpis.cu.waverecorder.oscilogram.mpchart.PerformanceLineChart;
 import gps.cenpis.cu.waverecorder.activity.WaveItemDetailActivity;
 import gps.cenpis.cu.waverecorder.wave.util.WavContent;
 import gps.cenpis.cu.waverecorder.fragment.WaveItemDetailFragment;

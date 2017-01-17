@@ -1,4 +1,4 @@
-package com.semantive.waveformandroid.waveform;
+package gps.cenpis.cu.waverecorder.oscilogram.semantive.view;
 
 import android.app.ProgressDialog;
 import android.content.DialogInterface;
@@ -20,9 +20,7 @@ import android.widget.AbsoluteLayout;
 import android.widget.ImageButton;
 import android.widget.TextView;
 
-import com.semantive.waveformandroid.waveform.soundfile.CheapSoundFile;
-import com.semantive.waveformandroid.waveform.view.MarkerView;
-import com.semantive.waveformandroid.waveform.view.WaveformView;
+import gps.cenpis.cu.waverecorder.oscilogram.semantive.soundfile.CheapSoundFile;
 
 import java.io.File;
 import java.io.FileInputStream;
@@ -105,7 +103,7 @@ public abstract class WaveformFragment extends Fragment implements MarkerView.Ma
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         super.onCreateView(inflater, container, savedInstanceState);
-        View view = inflater.inflate(R.layout.activity_main_fragment, container, false);
+        View view = inflater.inflate(R.layout.activity_semantive_fragment, container, false);
         loadGui(view);
         if (mSoundFile == null) {
             loadFromFile();

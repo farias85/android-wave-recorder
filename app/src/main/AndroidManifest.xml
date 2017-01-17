@@ -40,7 +40,7 @@
                 android:value="gps.cenpis.cu.waverecorder.activity.WaveItemListActivity" />
         </activity>
         <activity
-            android:name=".activity.PerformanceLineChart"
+            android:name=".oscilogram.mpchart.PerformanceLineChart"
             android:label="@string/title_activity_chart" />
         <activity
             android:name=".activity.BasicActivity"
@@ -60,7 +60,7 @@
             android:label="@string/title_activity_main"
             android:theme="@style/AppTheme.NoActionBar"></activity>
         <activity
-            android:name="com.semantive.example.MainActivity"
+            android:name=".oscilogram.semantive.SemantiveActivity"
             android:label="@string/title_activity_main"
             android:theme="@style/AppTheme.NoActionBar"></activity>
     </application>

@@ -1,4 +1,4 @@
-package com.semantive.waveformandroid.waveform.soundfile;
+package gps.cenpis.cu.waverecorder.oscilogram.semantive.soundfile;
 
 import java.io.File;
 import java.io.FileInputStream;
