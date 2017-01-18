@@ -46,4 +46,12 @@
     <string name="title_activity_basic">BasicActivity</string>
     <string name="title_activity_sheet">SheetActivity</string>
 
+    <string name="filename">Filename: </string>
+    <string name="FileSizeBytes">FileSizeBytes: </string>
+    <string name="KB"> KB</string>
+    <string name="SampleRate">SampleRate: </string>
+    <string name="Hz"> Hz </string>
+    <string name="BitrateKbps">BitrateKbps: </string>
+    <string name="kbps"> kbps </string>
+
 </resources>

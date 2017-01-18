@@ -3,6 +3,8 @@ package gps.cenpis.cu.waverecorder.activity;
 import android.Manifest;
 import android.content.Intent;
 import android.content.pm.PackageManager;
+import android.media.AudioFormat;
+import android.media.AudioRecord;
 import android.net.Uri;
 import android.os.Bundle;
 import android.os.CountDownTimer;
@@ -18,15 +20,19 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.RadioButton;
 import android.widget.RadioGroup;
-import android.widget.TextClock;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import java.io.File;
+import java.util.ArrayList;
+import java.util.List;
 
 import gps.cenpis.cu.waverecorder.R;
+import gps.cenpis.cu.waverecorder.fragment.WaveItemDetailFragment2;
 import gps.cenpis.cu.waverecorder.wave.util.WavAudioRecorder;
+import gps.cenpis.cu.waverecorder.wave.util.WavContent;
 import gps.cenpis.cu.waverecorder.wave.util.WavUtil;
 
 public class RecorderActivity extends AppCompatActivity {
@@ -37,9 +43,7 @@ public class RecorderActivity extends AppCompatActivity {
     private Button btnControl, btnStop;
     private TextView textDisplay;
     private EditText editText1;
-    private TextClock clock;
     private WavAudioRecorder mRecorder;
-    private String mRcordFilePath;
 
     private RadioGroup rgDuration;
     private int duration;
@@ -47,8 +51,7 @@ public class RecorderActivity extends AppCompatActivity {
     private int frequency;
 
     private CountDownTimer timer;
-    private Button btnTest;
-    private Button btnPlay;
+//    private WaveformView waveformView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -60,7 +63,7 @@ public class RecorderActivity extends AppCompatActivity {
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
-        FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.btnFloatingPlay);
+        final FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.btnFloatingPlay);
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -86,10 +89,14 @@ public class RecorderActivity extends AppCompatActivity {
         rgDuration = (RadioGroup) findViewById(R.id.rgDuration);
         rgFrequency = (RadioGroup) findViewById(R.id.rgFrequency);
 
+
         rgDurationClicked(null);
         rgFrequencyClicked(null);
 
         textDisplay = (TextView) this.findViewById(R.id.Textdisplay);
+
+//        waveformView = (WaveformView) this.findViewById(R.id.waveformView);
+//        waveformView.setChannels(1);
 
         btnControl = (Button) this.findViewById(R.id.btnControl);
         btnControl.setText(getBaseContext().getString(R.string.btn_start));
@@ -103,20 +110,36 @@ public class RecorderActivity extends AppCompatActivity {
             public void onClick(View v) {
                 timer.cancel();
                 mRecorder.stop();
-                mRecorder.reset();
+                //mRecorder.reset();
                 btnControl.setText(getBaseContext().getString(R.string.btn_start));
                 btnControlSetEnable(true);
+
+//                short[] samples = null;
+//                try {
+//                    samples = WavUtil.getAudioSample(getFilePath());
+//                } catch (IOException e) {
+//                    e.printStackTrace();
+//                }
+//                waveformView.setSamples(samples);
+//                waveformView.setVisibility(View.VISIBLE);
+//                waveformView.refreshDrawableState();
+
+                fab.setVisibility(View.INVISIBLE);
+                WavContent.WavItem item = WavContent.findItem(editText1.getText().toString() + ".wav");
+                Bundle arguments = new Bundle();
+                arguments.putString(WaveItemDetailFragment2.ARG_ITEM_ID, item.id);
+                WaveItemDetailFragment2 fragment = new WaveItemDetailFragment2();
+                fragment.setArguments(arguments);
+                getSupportFragmentManager().beginTransaction()
+                        .add(R.id.recorder_container, fragment)
+                        .commit();
             }
         });
 
-//        btnTest = (Button) findViewById(R.id.btnTest);
-//        btnTest.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-//                mRcordFilePath = mRcordFilePath != null ? mRcordFilePath : WavUtil.DIRECTORY_PATH + "testwave-8000-12000.wav";
-//                //PerformanceLineChartActivity.callMe(NewVentureActivity.this, mRcordFilePath);
-//            }
-//        });
+        List<Integer> list = getSupportedSampleRate();
+        for (Integer sampleRate : list) {
+            enableRadioGroupOptions(sampleRate);
+        }
     }
 
     @Override
@@ -189,6 +212,45 @@ public class RecorderActivity extends AppCompatActivity {
         editText1.setText("testwave" + "-" + frequency + "-" + duration);
     }
 
+    private List<Integer> getSupportedSampleRate() {
+
+        final int validSampleRates[] = new int[]{8000, 11025, 16000, 22050,
+                32000, 37800, 44056, 44100, 47250, 48000, 50000, 50400, 88200,
+                96000, 176400, 192000, 352800, 2822400, 5644800};
+
+        List<Integer> mResult = new ArrayList<>();
+
+        for (int i = 0; i < validSampleRates.length; i++) {
+            int result = AudioRecord.getMinBufferSize(validSampleRates[i],
+                    AudioFormat.CHANNEL_IN_MONO,
+                    AudioFormat.ENCODING_PCM_16BIT);
+            if (result != AudioRecord.ERROR
+                    && result != AudioRecord.ERROR_BAD_VALUE && result > 0) {
+                mResult.add(validSampleRates[i]);
+                Log.i(LOG_TAG, "valid sample rate: " + String.valueOf(validSampleRates[i]));
+            }
+        }
+        return mResult;
+    }
+
+    private void enableRadioGroupOptions(int sampleRate) {
+        RadioButton rb = null;
+        switch (sampleRate) {
+            case 8000:
+                rb = (RadioButton) this.findViewById(R.id.radio8000hz);
+                break;
+            case 22050:
+                rb = (RadioButton) this.findViewById(R.id.radio22050hz);
+                break;
+            case 44100:
+                rb = (RadioButton) this.findViewById(R.id.radio44100hz);
+                break;
+        }
+        if (rb != null) {
+            rb.setEnabled(true);
+        }
+    }
+
     @Override
     public void onDestroy() {
         super.onDestroy();
@@ -199,6 +261,7 @@ public class RecorderActivity extends AppCompatActivity {
 
     private void btnControlSetEnable(boolean enable) {
         btnControl.setEnabled(enable);
+        editText1.setEnabled(enable);
         btnStop.setEnabled(!enable);
     }
 
@@ -216,9 +279,8 @@ public class RecorderActivity extends AppCompatActivity {
             }
 
             mRecorder = WavAudioRecorder.getInstanse(frequency);
-            mRcordFilePath = getFilePath();
-            mRecorder.setOutputFile(mRcordFilePath);
-            textDisplay.setText(getBaseContext().getString(R.string.recorder_display) + mRcordFilePath);
+            mRecorder.setOutputFile(getFilePath());
+            textDisplay.setText(getBaseContext().getString(R.string.recorder_display) + getFilePath());
 
             if (WavAudioRecorder.State.INITIALIZING == mRecorder.getState()) {
                 mRecorder.prepare();
@@ -232,6 +294,7 @@ public class RecorderActivity extends AppCompatActivity {
 
                 btnControlSetEnable(false);
                 Toast.makeText(RecorderActivity.this, frequency + " - " + duration, Toast.LENGTH_LONG).show();
+                //waveformView.setVisibility(View.INVISIBLE);
 
                 timer = new CountDownTimer(duration, 1000) {
                     @Override

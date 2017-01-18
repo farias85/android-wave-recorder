@@ -1,6 +1,7 @@
 package gps.cenpis.cu.waverecorder.fragment;
 
 import android.app.Activity;
+import android.content.Context;
 import android.os.Bundle;
 import android.support.design.widget.CollapsingToolbarLayout;
 import android.support.design.widget.FloatingActionButton;
@@ -13,15 +14,8 @@ import android.widget.Toast;
 
 import com.newventuresoftware.waveform.WaveformView;
 
-import org.apache.commons.io.IOUtils;
-
 import java.io.File;
-import java.io.FileInputStream;
 import java.io.IOException;
-import java.io.InputStream;
-import java.nio.ByteBuffer;
-import java.nio.ByteOrder;
-import java.nio.ShortBuffer;
 import java.text.DecimalFormat;
 
 import gps.cenpis.cu.waverecorder.R;
@@ -80,28 +74,37 @@ public class WaveItemDetailFragment2 extends Fragment {
             } catch (IOException e) {
                 e.printStackTrace();
             }
+            Context context = getActivity().getBaseContext();
             StringBuilder details = new StringBuilder();
-            details.append("FileSizeBytes: ");
+
+            details.append(context.getString(R.string.filename) + " ");
+            details.append(mItem.wFileName);
+            details.append("\n");
+
+            details.append(context.getString(R.string.FileSizeBytes) + " ");
             double size = cheapWAV.getFileSizeBytes() / 1024;
             DecimalFormat decimalFormat = new DecimalFormat("##.##");
             details.append(decimalFormat.format(size));
-            details.append(" KB");
+            details.append(" " + context.getString(R.string.KB));
             details.append("\n");
-            details.append("SampleRate: ");
+
+            details.append(context.getString(R.string.SampleRate) + " ");
             details.append(cheapWAV.getSampleRate());
-            details.append(" Hz");
+            details.append(" " + context.getString(R.string.Hz));
             details.append("\n");
-            details.append("BitrateKbps: ");
+
+            details.append(context.getString(R.string.BitrateKbps) + " ");
             details.append(cheapWAV.getAvgBitrateKbps());
-            details.append(" kbps");
+            details.append(" " + context.getString(R.string.kbps));
             details.append("\n");
+
             ((TextView) rootView.findViewById(R.id.waveitem_detail)).setText(details.toString());
 
             final WaveformView mPlaybackView = (WaveformView) rootView.findViewById(R.id.playbackWaveformView);
 
             short[] samples = null;
             try {
-                samples = getAudioSample();
+                samples = WavUtil.getAudioSample(mItem.wFileName);
             } catch (IOException e) {
                 e.printStackTrace();
             }
@@ -155,30 +158,5 @@ public class WaveItemDetailFragment2 extends Fragment {
         }
         mPlaybackThread = null;
         super.onDestroy();
-    }
-
-    private short[] getAudioSample() throws IOException {
-
-        InputStream is = null;
-        byte[] data = null;
-        try {
-            is = new FileInputStream(WavUtil.DIRECTORY_PATH + mItem.wFileName);
-            data = IOUtils.toByteArray(is);
-        } catch (Exception e) {
-            e.printStackTrace();
-        } finally {
-            if (is != null) {
-                try {
-                    is.close();
-                } catch (IOException e) {
-                    e.printStackTrace();
-                }
-            }
-        }
-
-        ShortBuffer sb = ByteBuffer.wrap(data).order(ByteOrder.LITTLE_ENDIAN).asShortBuffer();
-        short[] samples = new short[sb.limit()];
-        sb.get(samples);
-        return samples;
     }
 }

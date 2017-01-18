@@ -21,7 +21,7 @@ import android.util.Log;
 
 public class RecordingThread {
     private static final String LOG_TAG = RecordingThread.class.getSimpleName();
-    private static final int SAMPLE_RATE = 44100;
+    private static final int SAMPLE_RATE = 8000;
 
     public RecordingThread(AudioDataReceivedListener listener) {
         mListener = listener;

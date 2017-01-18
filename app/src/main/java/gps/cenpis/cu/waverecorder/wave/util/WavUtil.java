@@ -3,8 +3,16 @@ package gps.cenpis.cu.waverecorder.wave.util;
 import android.media.MediaPlayer;
 import android.os.Environment;
 
+import org.apache.commons.io.IOUtils;
+
 import java.io.File;
 import java.io.FileFilter;
+import java.io.FileInputStream;
+import java.io.IOException;
+import java.io.InputStream;
+import java.nio.ByteBuffer;
+import java.nio.ByteOrder;
+import java.nio.ShortBuffer;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -55,5 +63,30 @@ public class WavUtil {
         } catch (Exception e) {
             e.printStackTrace();
         }
+    }
+
+    public static short[] getAudioSample(String wFileName) throws IOException {
+
+        InputStream is = null;
+        byte[] data = null;
+        try {
+            is = new FileInputStream(DIRECTORY_PATH + wFileName);
+            data = IOUtils.toByteArray(is);
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            if (is != null) {
+                try {
+                    is.close();
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+            }
+        }
+
+        ShortBuffer sb = ByteBuffer.wrap(data).order(ByteOrder.LITTLE_ENDIAN).asShortBuffer();
+        short[] samples = new short[sb.limit()];
+        sb.get(samples);
+        return samples;
     }
 }

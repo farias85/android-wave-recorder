@@ -3,6 +3,8 @@ package gps.cenpis.cu.waverecorder.activity;
 import android.Manifest;
 import android.content.Intent;
 import android.content.pm.PackageManager;
+import android.media.AudioFormat;
+import android.media.AudioRecord;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.design.widget.FloatingActionButton;
@@ -12,21 +14,21 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Toast;
 
-import gps.cenpis.cu.waverecorder.oscilogram.newventures.NewVentureActivity;
-import gps.cenpis.cu.waverecorder.oscilogram.semantive.SemantiveActivity;
-
+import java.util.ArrayList;
 import java.util.List;
 
 import gps.cenpis.cu.waverecorder.R;
-import gps.cenpis.cu.waverecorder.wave.util.WavContent;
 import gps.cenpis.cu.waverecorder.utility.RecyclerViewEmptySupport;
 import gps.cenpis.cu.waverecorder.utility.SimpleDividerItemDecoration;
 import gps.cenpis.cu.waverecorder.utility.SimpleItemRecyclerViewAdapter;
+import gps.cenpis.cu.waverecorder.wave.util.WavContent;
+import gps.cenpis.cu.waverecorder.wave.util.WavUtil;
 
 /**
  * An activity representing a list of WaveItems. This activity
@@ -39,6 +41,7 @@ import gps.cenpis.cu.waverecorder.utility.SimpleItemRecyclerViewAdapter;
 public class WaveItemListActivity extends AppCompatActivity {
 
     private static final int PERMISSION_WRITE_EXTRENAL = 0;
+    private static final String LOG_TAG = WaveItemListActivity.class.getSimpleName();
     /**
      * Whether or not the activity is in two-pane mode, i.e. running on a tablet
      * device.

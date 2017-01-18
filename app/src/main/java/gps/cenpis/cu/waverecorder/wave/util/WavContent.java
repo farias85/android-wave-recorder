@@ -2,15 +2,10 @@ package gps.cenpis.cu.waverecorder.wave.util;
 
 import android.support.annotation.NonNull;
 
-import java.io.File;
-import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-
-import gps.cenpis.cu.waverecorder.oscilogram.semantive.soundfile.CheapSoundFile;
-import gps.cenpis.cu.waverecorder.oscilogram.semantive.soundfile.CheapWAV;
 
 /**
  * Helper class for providing sample wFileName for user interfaces created by
@@ -74,6 +69,17 @@ public class WavContent {
         return map;
     }
 
+    public static WavItem findItem(String wFileName) {
+        WavContent content = WavContent.getInstance(true);
+        List<WavItem> l = content.getItems();
+        for (WavItem item : l) {
+            if (item.wFileName.equalsIgnoreCase(wFileName)) {
+                return item;
+            }
+        }
+        return null;
+    }
+
     /**
      * A dummy item representing a piece of wFileName.
      */
@@ -93,6 +99,4 @@ public class WavContent {
             return wFileName;
         }
     }
-
-    //public enum
 }
