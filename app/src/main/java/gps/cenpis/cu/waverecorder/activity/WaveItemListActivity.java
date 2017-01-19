@@ -96,7 +96,6 @@ public class WaveItemListActivity extends AppCompatActivity {
         RecyclerViewEmptySupport recyclerView = (RecyclerViewEmptySupport) findViewById(R.id.waveitem_list);
         recyclerView.setLayoutManager(new LinearLayoutManager(WaveItemListActivity.this));
         recyclerView.setEmptyView(findViewById(R.id.list_empty));
-        assert recyclerView != null;
         setupRecyclerView(recyclerView);
     }
 
@@ -110,26 +109,6 @@ public class WaveItemListActivity extends AppCompatActivity {
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         getMenuInflater().inflate(R.menu.list_menu, menu);
-
-//        new BottomSheet.Builder(this)
-//                .setSheet(R.menu.list_menu)
-//                .setTitle("Options")
-//                .setListener(new BottomSheetListener() {
-//                    @Override
-//                    public void onSheetShown(@NonNull BottomSheet bottomSheet) {
-//
-//                    }
-//
-//                    @Override
-//                    public void onSheetItemSelected(@NonNull BottomSheet bottomSheet, MenuItem item) {
-//
-//                    }
-//
-//                    @Override
-//                    public void onSheetDismissed(@NonNull BottomSheet bottomSheet, @DismissEvent int dismissEvent) {
-//
-//                    }
-//                }).show();
         return super.onCreateOptionsMenu(menu);
     }
 
@@ -138,9 +117,11 @@ public class WaveItemListActivity extends AppCompatActivity {
         switch (item.getItemId()) {
             case R.id.menu_insert:
                 startActivity(new Intent(WaveItemListActivity.this, RecorderActivity.class));
+//                startActivity(new Intent(WaveItemListActivity.this, LoginActivity.class));
+//                startActivity(new Intent(WaveItemListActivity.this, LoginActivity2.class));
                 break;
             case R.id.menu_settings:
-                //startActivity(new Intent(getActivity(), TaskPreferences.class));
+                startActivity(new Intent(getBaseContext(), SettingsActivity.class));
                 break;
         }
         return super.onOptionsItemSelected(item);
@@ -160,5 +141,4 @@ public class WaveItemListActivity extends AppCompatActivity {
                 break;
         }
     }
-
 }
