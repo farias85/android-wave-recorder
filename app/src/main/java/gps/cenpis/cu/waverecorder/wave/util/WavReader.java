@@ -1,7 +1,19 @@
 /*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
+ * Licensed under the Apache License, Version 2.0 (the "License"); you may not
+ * use this file except in compliance with the License. You may obtain a copy of
+ * the License at
+ *
+ * http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS, WITHOUT
+ * WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied. See the
+ * License for the specific language governing permissions and limitations under
+ * the License.
+ *
+ * Created by Felipe Rodriguez Arias <ucifarias@gmail.com> on 12/01/2017
  */
+
 package gps.cenpis.cu.waverecorder.wave.util;
 
 import org.apache.commons.io.IOUtils;
@@ -10,9 +22,6 @@ import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.InputStream;
 
-/**
- * @author farias-i3
- */
 public class WavReader {
 
     private double[] left;
@@ -36,7 +45,7 @@ public class WavReader {
     private double[] right;
 
     // convert two bytes to one double in the range -1 to 1
-    static double bytesToDouble(byte firstByte, byte secondByte) {
+    private static double bytesToDouble(byte firstByte, byte secondByte) {
 
         int fb = firstByte < 0 ? firstByte + 256 : firstByte;
         int sb = secondByte < 0 ? secondByte + 256 : secondByte;
@@ -47,9 +56,7 @@ public class WavReader {
         // convert two bytes to one short (little endian)
         // short s = (short) ((secondByte << 8) | firstByte);
         // convert to range from -1 to (just below) 1
-        double result = s2 / 32768.0;
-
-        return result;
+        return s2 / 32768.0;
     }
 
     // Returns left and right double arrays. 'right' will be null if sound is mono.
@@ -72,34 +79,10 @@ public class WavReader {
             }
         }
 
-//        File f = new File(filename);
-//        int size = (int)f.length();
-//        byte[] wav = new byte[size];
-//        InputStream in = null;
-//        try {
-//            in = new FileInputStream(filename);
-//            in.read(wav);
-//        } catch (IOException ex) {
-//            Log.i(WavReader.class.getName(), ex.getMessage());
-//        } finally {
-//            if (in != null) try {
-//                in.close();
-//            } catch (Exception ex) {
-//                Log.i(WavReader.class.getName(), ex.getMessage());
-//            }
-//        }
-
-//        Path p = FileSystems.getDefault().getPath("", filename);
-//        byte[] wav = null;
-//
-//        try {
-//            wav = Files.readAllBytes(p);
-//        } catch (IOException ex) {
-//            ex.printStackTrace();
-//        }
-
         // Determine if mono or stereo
-        int channels = wav[22];     // Forget byte 23 as 99.999% of WAVs are 1 or 2 channels
+        int channels;     // Forget byte 23 as 99.999% of WAVs are 1 or 2 channels
+        assert wav != null;
+        channels = wav[22];
 
         // Get past all the other sub chunks to get to the data subchunk:
         int pos = 12;   // First Subchunk ID from 12 to 16
@@ -136,18 +119,5 @@ public class WavReader {
             }
             i++;
         }
-    }
-
-    public static void main(String[] args) throws Exception {
-
-        //String file = "C:/C170812.wav";
-        //String file = "C:/y4.wav";
-        String file = "C:/y5true.wav";
-
-        WavReader wr = new WavReader();
-        wr.openWav(file);
-
-        double[] left = wr.getLeft();
-        double[] right = wr.getRight();
     }
 }

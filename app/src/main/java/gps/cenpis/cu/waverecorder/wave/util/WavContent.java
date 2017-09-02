@@ -1,3 +1,19 @@
+/*
+ * Licensed under the Apache License, Version 2.0 (the "License"); you may not
+ * use this file except in compliance with the License. You may obtain a copy of
+ * the License at
+ *
+ * http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS, WITHOUT
+ * WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied. See the
+ * License for the specific language governing permissions and limitations under
+ * the License.
+ *
+ * Created by Felipe Rodriguez Arias <ucifarias@gmail.com> on 12/01/2017
+ */
+
 package gps.cenpis.cu.waverecorder.wave.util;
 
 import android.support.annotation.NonNull;
@@ -10,26 +26,16 @@ import java.util.Map;
 /**
  * Helper class for providing sample wFileName for user interfaces created by
  * Android template wizards.
- * <p>
- * TODO: Replace all uses of this class before publishing your app.
  */
 public class WavContent {
 
-    public final List<WavItem> items = new ArrayList<WavItem>();
-    public final Map<String, WavItem> map = new HashMap<String, WavItem>();
+    private final List<WavItem> items = new ArrayList<WavItem>();
+    private final Map<String, WavItem> map = new HashMap<String, WavItem>();
 
-    public WavContent() {
+    private WavContent() {
         List<String> witems = WavUtil.getFiles();
         for (int i = 0; i < witems.size(); i++) {
             addWavItem(new WavItem(String.valueOf(i), witems.get(i), makeDetails(i)));
-
-//            CheapWAV cheapWAV = new CheapWAV();
-//            try {
-//                cheapWAV.ReadFile(new File(WavUtil.DIRECTORY_PATH + witems.get(i)));
-//            } catch (IOException e) {
-//                e.printStackTrace();
-//            }
-//            addWavItem(new WavItem(String.valueOf(i), witems.get(i), String.valueOf(cheapWAV.getFileSizeBytes())));
         }
     }
 

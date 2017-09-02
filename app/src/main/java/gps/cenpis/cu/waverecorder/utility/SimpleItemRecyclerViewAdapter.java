@@ -1,3 +1,19 @@
+/*
+ * Licensed under the Apache License, Version 2.0 (the "License"); you may not
+ * use this file except in compliance with the License. You may obtain a copy of
+ * the License at
+ *
+ * http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS, WITHOUT
+ * WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied. See the
+ * License for the specific language governing permissions and limitations under
+ * the License.
+ *
+ * Created by Felipe Rodriguez Arias <ucifarias@gmail.com> on 10/01/2017
+ */
+
 package gps.cenpis.cu.waverecorder.utility;
 
 import android.content.Intent;
@@ -22,15 +38,11 @@ import java.io.File;
 import java.util.List;
 
 import gps.cenpis.cu.waverecorder.R;
-import gps.cenpis.cu.waverecorder.fragment.WaveItemDetailFragment2;
 import gps.cenpis.cu.waverecorder.activity.WaveItemDetailActivity;
+import gps.cenpis.cu.waverecorder.fragment.WaveItemDetailFragment2;
 import gps.cenpis.cu.waverecorder.oscilogram.semantive.SemantiveActivity;
 import gps.cenpis.cu.waverecorder.wave.util.WavContent;
 import gps.cenpis.cu.waverecorder.wave.util.WavUtil;
-
-/**
- * Created by farias-i5 on 10/01/2017.
- */
 
 public class SimpleItemRecyclerViewAdapter
         extends RecyclerView.Adapter<SimpleItemRecyclerViewAdapter.ViewHolder> {
@@ -70,7 +82,7 @@ public class SimpleItemRecyclerViewAdapter
         holder.mContentView.setText("");
         holder.mContentView.setTypeface(mTypeFaceLight);
 
-        int id = Integer.parseInt(holder.mItem.id) + 1 ;
+        int id = Integer.parseInt(holder.mItem.id) + 1;
         holder.mDetails.setText(String.valueOf(id));
         holder.mDetails.setTypeface(mTypeFaceLight);
 
@@ -126,16 +138,16 @@ public class SimpleItemRecyclerViewAdapter
         return items.size();
     }
 
-    public class ViewHolder extends RecyclerView.ViewHolder
+    class ViewHolder extends RecyclerView.ViewHolder
             implements View.OnCreateContextMenuListener, BottomSheetListener {
 
-        public final View mView;
-        public final TextView mIdView;
-        public final TextView mContentView;
-        public final TextView mDetails;
-        public WavContent.WavItem mItem;
+        final View mView;
+        final TextView mIdView;
+        final TextView mContentView;
+        final TextView mDetails;
+        WavContent.WavItem mItem;
 
-        public ViewHolder(View view) {
+        ViewHolder(View view) {
             super(view);
             mView = view;
             mIdView = (TextView) view.findViewById(R.id.id);
@@ -205,6 +217,12 @@ public class SimpleItemRecyclerViewAdapter
 
                 case BottomSheetListener.DISMISS_EVENT_BUTTON_NEGATIVE:
                     Toast.makeText(mActivity, "Negative Button Clicked", Toast.LENGTH_SHORT).show();
+                    break;
+                case BottomSheetListener.DISMISS_EVENT_BUTTON_NEUTRAL:
+                    break;
+                case BottomSheetListener.DISMISS_EVENT_MANUAL:
+                    break;
+                case BottomSheetListener.DISMISS_EVENT_SWIPE:
                     break;
             }
         }
