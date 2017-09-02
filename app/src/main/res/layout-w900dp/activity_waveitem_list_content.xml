@@ -14,7 +14,6 @@
     <!--
     This layout is a two-pane layout for the WaveItems
     master/detail flow.
-    
     -->
 
     <gps.cenpis.cu.waverecorder.utility.RecyclerViewEmptySupport xmlns:android="http://schemas.android.com/apk/res/android"
